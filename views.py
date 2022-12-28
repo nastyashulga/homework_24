@@ -1,3 +1,5 @@
+from typing import Any
+
 from flask import Blueprint, request, jsonify
 from schema import RequestParamsListSchema
 from marshmallow import ValidationError
@@ -7,7 +9,7 @@ from utils import build_query
 main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/perform_query', method=['POST'])
-def perform_query():
+def perform_query() -> tuple[Any, str]:
 
     try:
         params = RequestParamsListSchema().load(request.json)

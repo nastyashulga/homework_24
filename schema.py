@@ -5,7 +5,7 @@ class RequestParamSchema(Schema):
     value = fields.Str(request=True)
 
     @validates_schema
-    def validate_cmd_params(self, values, *args, **kwargs):
+    def validate_cmd_params(self, values: str, *args, **kwargs) -> str:
         valid_cmd_commands = {'filter', 'sort', 'map', 'limit', 'unique'}
 
         if values['cmd'] not in valid_cmd_commands:
